@@ -169,37 +169,35 @@ console.log("• flat() - Groupes par île avant aplatissement:", groupesParIle)
 console.log("• flat() - Après aplatissement:", groupesParIle.flat());
 console.log();
 
-// // ===== STATISTIQUES FINALES =====
+// ===== STATISTIQUES FINALES =====
 
-// console.log("--- STATISTIQUES FINALES ---");
+console.log("--- STATISTIQUES FINALES ---");
 
-// // Calculs statistiques utilisant différentes méthodes
-// const masses = penguins.map(p => p.body_mass_g).filter(m => m != null);
-// const masseTotaleCalc = masses.reduce((sum, mass) => /* TODO */, 0);
-// const masseMoyenne = masseTotaleCalc / masses.length;
-// const masseMin = Math.min(...masses);
-// const masseMax = /* TODO */;
+// Calculs statistiques utilisant différentes méthodes
+const masses = penguins.map(p => p.body_mass_g).filter(m => m != null) as number[];
+const masseTotaleCalc = masses.reduce((sum, mass) => sum + mass, 0);
+const masseMoyenne = masseTotaleCalc / masses.length;
+const masseMin = Math.min(...masses);
+const masseMax = Math.max(...masses);
 
-// console.log("• Statistiques des masses:");
-// console.log(`  - Masse moyenne: ${masseMoyenne.toFixed(1)}g`);
-// console.log(`  - Masse minimale: ${masseMin}g`);
-// console.log(`  - Masse maximale: ${masseMax}g`);
+console.log("• Statistiques des masses:");
+console.log(`  - Masse moyenne: ${masseMoyenne.toFixed(1)}g`);
+console.log(`  - Masse minimale: ${masseMin}g`);
+console.log(`  - Masse maximale: ${masseMax}g`);
 
-// // Répartition par île
-// const repartitionIles = penguins.reduce((acc, p) => {
-//     acc[p.island] = (acc[p.island] || 0) + 1;
-//     return acc;
-// }, {} as Record<string, number>);
-// console.log("• Répartition par île:", repartitionIles);
+const repartitionIles = penguins.reduce((acc, p) => {
+    acc[p.island] = (acc[p.island] || 0) + 1;
+    return acc;
+}, {} as Record<string, number>);
+console.log("• Répartition par île:", repartitionIles);
 
-// // Répartition par sexe
-// const repartitionSexe = penguins.reduce((acc, p) => {
-//     if (p.sex != null) {
-//         acc[p.sex] = (acc[p.sex] || 0) + 1;
-//     }
-//     return acc;
-// }, {} as Record<string, number>);
-// console.log("• Répartition par sexe:", repartitionSexe);
+const repartitionSexe = penguins.reduce((acc, p) => {
+    if (p.sex != null) {
+        acc[p.sex] = (acc[p.sex] || 0) + 1;
+    }
+    return acc;
+}, {} as Record<string, number>);
+console.log("• Répartition par sexe:", repartitionSexe);
 
 // // =============================================
 // // GROUPEMENT DES DONNÉES AVEC Object.groupBy
