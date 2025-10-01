@@ -19,42 +19,42 @@ console.log("• at() - Premier pingouin:", penguins.at(0)?.species);
 console.log("• at() - Dernier pingouin:", penguins.at(-1)?.species);
 console.log();
 
-// // slice() - Extrait une portion du tableau
-// console.log("• slice() - Les 3 premiers pingouins:");
-// console.log(penguins.slice(/* TODO */).map(p => `${p.species} de ${p.island}`));
-// console.log();
+// slice() - Extrait une portion du tableau
+console.log("• slice() - Les 3 premiers pingouins:");
+console.log(penguins.slice(0, 3).map(p => `${p.species} de ${p.island}`));
+console.log();
 
-// // ===== MÉTHODES DE RECHERCHE ET VÉRIFICATION =====
+// ===== MÉTHODES DE RECHERCHE ET VÉRIFICATION =====
 
-// console.log("--- MÉTHODES DE RECHERCHE ET VÉRIFICATION ---");
+console.log("--- MÉTHODES DE RECHERCHE ET VÉRIFICATION ---");
 
-// // find() - Trouve le premier élément qui satisfait une condition
-// const premierChinstrap = penguins.find(/* TODO */);
-// console.log("• find() - Premier pingouin Chinstrap:", premierChinstrap?.island);
+// find() - Trouve le premier élément qui satisfait une condition
+const premierChinstrap = penguins.find(p => p.species === "Chinstrap");
+console.log("• find() - Premier pingouin Chinstrap:", premierChinstrap?.island);
 
-// // findIndex() - Trouve l'indice du premier élément qui satisfait une condition
-// const indexChinstrap = penguins.findIndex(/* TODO */);
-// console.log("• findIndex() - Index du premier Chinstrap:", indexChinstrap);
+// findIndex() - Trouve l'indice du premier élément qui satisfait une condition
+const indexChinstrap = penguins.findIndex(p => p.species === "Chinstrap");
+console.log("• findIndex() - Index du premier Chinstrap:", indexChinstrap);
 
-// // indexOf() - Trouve l'indice d'un élément (comparaison stricte)
-// const especies = penguins.map(p => p.species);
-// console.log("• indexOf() - Index de 'Gentoo' dans la liste des espèces:", especies.indexOf(/* TODO */));
+// indexOf() - Trouve l'indice d'un élément (comparaison stricte)
+const especies = penguins.map(p => p.species);
+console.log("• indexOf() - Index de 'Gentoo' dans la liste des espèces:", especies.indexOf("Gentoo"));
 
-// // lastIndexOf() - Trouve le dernier indice d'un élément
-// console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies/* TODO */);
+// lastIndexOf() - Trouve le dernier indice d'un élément
+console.log("• lastIndexOf() - Dernier index de 'Adelie':", especies.lastIndexOf("Adelie"));
 
-// // includes() - Vérifie si un élément existe dans le tableau
-// const iles = penguins.map(p => p.island);
-// console.log("• includes() - Île 'Dream' existe-t-elle?", /* TODO */);
+// includes() - Vérifie si un élément existe dans le tableau
+const iles = penguins.map(p => p.island);
+console.log("• includes() - Île 'Dream' existe-t-elle?",  iles.includes("Dream"));
 
-// // some() - Teste si au moins un élément satisfait une condition
-// const auMoinsUnLourd = penguins.some(p => p.body_mass_g != null && /* TODO */);
-// console.log("• some() - Y a-t-il des pingouins > 6000g?", auMoinsUnLourd);
+// some() - Teste si au moins un élément satisfait une condition
+const auMoinsUnLourd = penguins.some(p => p.body_mass_g != null && p.body_mass_g > 6000);
+console.log("• some() - Y a-t-il des pingouins > 6000g?", auMoinsUnLourd);
 
-// // every() - Teste si tous les éléments satisfent une condition
-// const tousOntMasse = penguins.every(/* TODO */);
-// console.log("• every() - Tous ont une masse > 0?", tousOntMasse);
-// console.log();
+// every() - Teste si tous les éléments satisfent une condition
+const tousOntMasse = penguins.every(p => p.body_mass_g != null && p.body_mass_g > 0);
+console.log("• every() - Tous ont une masse > 0?", tousOntMasse);
+console.log();
 
 // // ===== MÉTHODES DE FILTRAGE =====
 
