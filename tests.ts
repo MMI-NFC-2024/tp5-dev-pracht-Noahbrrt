@@ -199,47 +199,42 @@ const repartitionSexe = penguins.reduce((acc, p) => {
 }, {} as Record<string, number>);
 console.log("• Répartition par sexe:", repartitionSexe);
 
-// // =============================================
-// // GROUPEMENT DES DONNÉES AVEC Object.groupBy
-// // =============================================
+// =============================================
+// GROUPEMENT DES DONNÉES AVEC Object.groupBy
+// =============================================
 
-// console.log("\n--- GROUPEMENT AVEC Object.groupBy ---");
+console.log("\n--- GROUPEMENT AVEC Object.groupBy ---");
 
-// // Groupement par île
-// console.log("• Object.groupBy() - Répartition par île:");
-// const pingouinsParIle = Object.groupBy(penguins, /* TODO */);
-// for (const [ile, pingouins] of Object.entries(pingouinsParIle)) {
-//     console.log(`  ${ile}: ${pingouins?.length || 0} pingouins`);
-// }
+// Groupement par île
+console.log("• Object.groupBy() - Répartition par île:");
+const pingouinsParIle = Object.groupBy(penguins, p => p.island);
+for (const [ile, pingouins] of Object.entries(pingouinsParIle)) {
+    console.log(`  ${ile}: ${pingouins?.length || 0} pingouins`);
+}
 
+console.log("\n• Object.groupBy() - Répartition par espèce et sexe:");
+const pingouinsParEspeceEtSexe = Object.groupBy(penguins, pingouin => 
+    `${pingouin.species} - ${pingouin.sex || 'inconnu'}`
+);
 
-// // Groupement par espèce et sexe combinés
-// console.log("\n• Object.groupBy() - Répartition par espèce et sexe:");
-// const pingouinsParEspeceEtSexe = Object.groupBy(penguins, pingouin => 
-//     `${pingouin.species} - ${pingouin.sex || 'inconnu'}`
-// );
+console.log("\n• Object.groupBy() - Répartition par sexe:");
+const pingouinsParSexe = Object.groupBy(penguins, p => p.sex ?? 'inconnu');
+for (const [sexe, pingouins] of Object.entries(pingouinsParSexe)) {
+    console.log(`  ${sexe}: ${pingouins?.length || 0} pingouins`);
+}
 
-// // Groupement par sexe
-// console.log("\n• Object.groupBy() - Répartition par sexe:");
-// const pingouinsParSexe = Object.groupBy(penguins, /* TODO remplacer null par "inconnu" */);
-// for (const [sexe, pingouins] of Object.entries(pingouinsParSexe)) {
-//     console.log(`  ${sexe}: ${pingouins?.length || 0} pingouins`);
-// }
-
-// // Groupement par catégorie de masse (léger, moyen, lourd)
-// console.log("\n• Object.groupBy() - Répartition par catégorie de masse:");
-// const pingouinsParCategorieMasse = Object.groupBy(penguins, pingouin => {
-//     if (!pingouin.body_mass_g) return 'masse inconnue';
-//     if (pingouin.body_mass_g < 3500) return 'léger';
-//     if (pingouin.body_mass_g < 4500) return 'moyen';
-//     return 'lourd';
-// });
-
-// Object.entries(pingouinsParCategorieMasse)
-//     .sort(([a], [b]) => a.localeCompare(b))
-//     .forEach(([categorie, pingouins]) => {
-//         console.log(`  ${categorie}: ${pingouins?.length || 0} pingouins`);
-//     });
+console.log("\n• Object.groupBy() - Répartition par catégorie de masse:");
+const pingouinsParCategorieMasse = Object.groupBy(penguins, pingouin => {
+    if (!pingouin.body_mass_g) return 'masse inconnue';
+    if (pingouin.body_mass_g < 3500) return 'léger';
+    if (pingouin.body_mass_g < 4500) return 'moyen';
+    return 'lourd';
+});
+Object.entries(pingouinsParCategorieMasse)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .forEach(([categorie, pingouins]) => {
+      console.log(`  ${categorie}: ${pingouins?.length || 0} pingouins`);
+  });
 
 // console.log("\n=== FIN DES EXEMPLES ===");
 
